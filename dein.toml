@@ -1,0 +1,83 @@
+#lightline
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = '''
+	let g:lightline = {
+		\ 'colorscheme': 'wombat',
+		\ 'active': {
+			\ 'left': [ ['mode', 'paste'], ['readonly', 'branchName', 'filepath', 'modified'] ]
+			\ },
+		\ 'component_function':{
+			\ 'filepath': 'FilePath',
+            \ 'branchName': 'BranchName'
+			\ },
+        \ 'separator': { 'left': '', 'right': '' },
+		\ }
+	function! BranchName()
+		if exists('*fugitive#head')
+			let branch = FugitiveHead()
+			return branch !=# '' ? ' '.branch : ''
+		endif
+		return ''
+	endfunction
+	function! FilePath()
+		if winwidth(0) > 90
+			return expand("%:s")
+		else
+			return expand("%:t")
+		endif
+	endfunction
+	" # show statusbar
+	set laststatus=2
+	" # hide --INSERT--
+	set noshowmode
+'''
+
+#colors
+#color-1
+#[[plugins]]
+#repo = 'rhysd/vim-color-spring-night'
+
+#color-2
+[[plugins]]
+repo = 'Nequo/vim-allomancer'
+
+#color-3
+#[[plugins]]
+#repo = 'cocopon/iceberg.vim'
+
+#markdown-preview
+[[plugins]]
+repo = 'iamcco/markdown-preview.nvim'
+on_ft = ['markdown', 'pandoc.markdown', 'rmd']
+build = '''
+cd app & yarn install
+'''
+
+#fzf.vim
+[[plugins]]
+repo = '~/.fzf' 
+
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+
+#window-size
+[[plugins]]
+repo = 'simeji/winresizer'
+
+#git fugitive
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+#emmet-vim
+[[plugins]]
+repo = 'mattn/emmet-vim'
+
+#translate.vim
+[[plugins]]
+repo = 'skanehira/translate.vim'
+
+#vaffle.vim
+[[plugins]]
+repo = 'cocopon/vaffle.vim'
+
